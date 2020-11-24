@@ -11,7 +11,7 @@ interface FoodApi {
 
     @GET("/restaurants/bypostcode/{outCode}")
     fun getRestaurants(
-        @Path("outCode") outCode: Editable
+        @Path("outCode") outCode: String
     ): Single<RestaurantResult>
 
 }

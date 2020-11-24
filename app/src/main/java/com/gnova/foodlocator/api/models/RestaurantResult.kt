@@ -10,6 +10,7 @@ data class RestaurantResult(
 
 @Parcelize
 data class Restaurant(
+    val Id: Int,
     val Cuisines: List<Cuisine>,
     val LogoUrl: String,
     val Name: String,

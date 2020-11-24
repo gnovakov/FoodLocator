@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">FoodLocator</string>
+    <string name="search_input">Enter Postcode</string>
+    <string name="search_button">Search</string>
+    <string name="restaurant_name">Name</string>
+    <string name="restaurant_cuisine">Cuisine</string>
+    <string name="restaurant_rating">Rating</string>
+    <string name="logo_image_desc">Restaurant Logo</string>
 </resources>
