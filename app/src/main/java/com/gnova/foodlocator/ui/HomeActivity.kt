@@ -6,12 +6,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.gnova.foodlocator.App
 import com.gnova.foodlocator.FoodApiStatus
 import com.gnova.foodlocator.R
 import com.gnova.foodlocator.ViewModelFactory
 import com.gnova.foodlocator.api.models.Restaurant
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.restaurant_grid_view_item.view.*
 import javax.inject.Inject
 
 class HomeActivity : AppCompatActivity() {
@@ -70,14 +73,17 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun showRestaurants(restaurants: List<Restaurant>) {
-        //Log.d("TAG", "Restaurants " + restaurants[0].Id)
         adapter.submitList(restaurants)
 
     }
 
     private fun setupRecyclerView() {
         restaurant_recycler_view.setHasFixedSize(true)
-        restaurant_recycler_view.layoutManager = GridLayoutManager(this, 1)
+        restaurant_recycler_view.layoutManager = LinearLayoutManager(
+            this, LinearLayoutManager.VERTICAL, false
+        )
         restaurant_recycler_view.adapter = adapter
     }
+
+
 }

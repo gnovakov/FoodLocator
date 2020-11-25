@@ -5,7 +5,8 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class RestaurantResult(
-    val Restaurants: List<Restaurant>
+    val Restaurants: List<Restaurant>,
+    var ResultCount: Int
 ) : Parcelable
 
 @Parcelize

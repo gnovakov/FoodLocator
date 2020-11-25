@@ -1,6 +1,5 @@
 package com.gnova.foodlocator.ui
 
-import android.text.Editable
 import android.util.Log
 import androidx.lifecycle.*
 import com.gnova.foodlocator.FoodApiStatus
@@ -24,7 +23,7 @@ class HomeViewModel @Inject constructor(private val foodRepo: FoodRepo): ViewMod
 
     fun onSearchBtnClick(outCode: String) {
 
-        getRestaurants(outCode)
+        getRestaurants(outCode.filter{ it.isLetterOrDigit() || it.isWhitespace() })
     }
 
 
