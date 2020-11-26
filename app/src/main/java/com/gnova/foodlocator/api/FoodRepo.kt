@@ -10,9 +10,8 @@ import javax.inject.Inject
 class FoodRepo @Inject constructor(private val foodApi: FoodApi){
 
     fun getRestaurants(outCode: String): Single<RestaurantResult> =
-        foodApi.getRestaurants(
-            outCode
-        )
+        foodApi.getRestaurants(outCode)
+
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
 }

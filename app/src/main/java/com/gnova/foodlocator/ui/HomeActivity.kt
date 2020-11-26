@@ -5,16 +5,14 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gnova.foodlocator.App
-import com.gnova.foodlocator.FoodApiStatus
 import com.gnova.foodlocator.R
 import com.gnova.foodlocator.ViewModelFactory
 import com.gnova.foodlocator.api.models.Restaurant
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.restaurant_grid_view_item.view.*
+import com.gnova.foodlocator.ui.MainViewState.Presenting
+import com.gnova.foodlocator.ui.MainViewState.Error
 import javax.inject.Inject
 
 class HomeActivity : AppCompatActivity() {
@@ -40,35 +38,16 @@ class HomeActivity : AppCompatActivity() {
 
         setupRecyclerView()
 
-        observeApiStatus()
+        observeViewState()
 
     }
 
-    private fun observeApiStatus() {
-        viewModel.apiStatus.observe(this, Observer {
-            it?.let {
+    private fun observeViewState() {
+        viewModel.viewState.observe(this, Observer {
                 when (it) {
-                    FoodApiStatus.LOADING -> {
-                        Log.d("TAG", "LOADING")
-                    }
-                    FoodApiStatus.ERROR -> {
-                        Log.d("TAG", "ERROR")
-                    }
-                    FoodApiStatus.DONE -> {
-                        Log.d("TAG", "DONE")
-                        observeRestaurants()
-                    }
-
+                    is Presenting -> showRestaurants(it.Restaurants)
+                    is Error -> Log.d("TAG", "ERROR")
                 }
-            }
-        })
-    }
-
-    private fun observeRestaurants() {
-        viewModel.restaurants.observe(this, Observer {
-            it?.let {
-                showRestaurants(it)
-            }
         })
     }
 
@@ -78,11 +57,11 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
-        restaurant_recycler_view.setHasFixedSize(true)
-        restaurant_recycler_view.layoutManager = LinearLayoutManager(
-            this, LinearLayoutManager.VERTICAL, false
-        )
-        restaurant_recycler_view.adapter = adapter
+        restaurant_recycler_view.let {
+            it.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+            it.setHasFixedSize(true)
+            it.adapter = adapter
+        }
     }
 
 

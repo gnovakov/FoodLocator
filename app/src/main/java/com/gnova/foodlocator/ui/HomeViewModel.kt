@@ -1,24 +1,22 @@
 package com.gnova.foodlocator.ui
 
-import androidx.lifecycle.*
-import com.gnova.foodlocator.FoodApiStatus
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.gnova.foodlocator.api.FoodRepo
-import com.gnova.foodlocator.api.models.Restaurant
+import com.gnova.foodlocator.ui.MainViewState.Loading
+import com.gnova.foodlocator.ui.MainViewState.Presenting
+import com.gnova.foodlocator.ui.MainViewState.Error
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(private val foodRepo: FoodRepo): ViewModel()  {
 
-    // The most recent API response
-    private val _apiStatus = MutableLiveData<FoodApiStatus>()
-    val apiStatus: LiveData<FoodApiStatus>
-        get() = _apiStatus
-
-    // A Restaurant
-    private val _restaurants = MutableLiveData<List<Restaurant>>()
-    val restaurants: LiveData<List<Restaurant>>
-        get() = _restaurants
+    // View State Version
+    private val _viewState = MutableLiveData<MainViewState>()
+    val viewState: LiveData<MainViewState>
+        get() = _viewState
 
     fun onSearchBtnClick(outCode: String) {
 
@@ -28,14 +26,14 @@ class HomeViewModel @Inject constructor(private val foodRepo: FoodRepo): ViewMod
 
 
     private fun getRestaurants(outCode: String) {
-        _apiStatus.value = FoodApiStatus.LOADING
-        add(foodRepo.getRestaurants(outCode).subscribe(
+        _viewState.value = Loading
+        add(
+            foodRepo.getRestaurants(outCode)
+                .subscribe(
             {
-                _restaurants.value = it.Restaurants
-                _apiStatus.value = FoodApiStatus.DONE
+                _viewState.value = Presenting(it.Restaurants)
             }, {
-                _apiStatus.value = FoodApiStatus.ERROR
-                _restaurants.value = ArrayList()
+                _viewState.value = Error
             }
 
         ))
