@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.gnova.foodlocator.api.FoodRepo
-import com.gnova.foodlocator.ui.MainViewState.Loading
-import com.gnova.foodlocator.ui.MainViewState.Presenting
-import com.gnova.foodlocator.ui.MainViewState.Error
+import com.gnova.foodlocator.ui.HomeViewState.Loading
+import com.gnova.foodlocator.ui.HomeViewState.Presenting
+import com.gnova.foodlocator.ui.HomeViewState.Error
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
@@ -14,8 +14,8 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(private val foodRepo: FoodRepo): ViewModel()  {
 
     // View State Version
-    private val _viewState = MutableLiveData<MainViewState>()
-    val viewState: LiveData<MainViewState>
+    private val _viewState = MutableLiveData<HomeViewState>()
+    val viewState: LiveData<HomeViewState>
         get() = _viewState
 
     fun onSearchBtnClick(outCode: String) {

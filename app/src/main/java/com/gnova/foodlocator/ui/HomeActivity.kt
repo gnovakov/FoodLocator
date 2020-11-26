@@ -11,8 +11,8 @@ import com.gnova.foodlocator.R
 import com.gnova.foodlocator.ViewModelFactory
 import com.gnova.foodlocator.api.models.Restaurant
 import kotlinx.android.synthetic.main.activity_home.*
-import com.gnova.foodlocator.ui.MainViewState.Presenting
-import com.gnova.foodlocator.ui.MainViewState.Error
+import com.gnova.foodlocator.ui.HomeViewState.Presenting
+import com.gnova.foodlocator.ui.HomeViewState.Error
 import javax.inject.Inject
 
 class HomeActivity : AppCompatActivity() {
