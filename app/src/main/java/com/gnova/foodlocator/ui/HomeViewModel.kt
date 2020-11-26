@@ -1,6 +1,5 @@
 package com.gnova.foodlocator.ui
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.gnova.foodlocator.FoodApiStatus
 import com.gnova.foodlocator.api.FoodRepo
@@ -29,19 +28,14 @@ class HomeViewModel @Inject constructor(private val foodRepo: FoodRepo): ViewMod
 
 
     private fun getRestaurants(outCode: String) {
+        _apiStatus.value = FoodApiStatus.LOADING
         add(foodRepo.getRestaurants(outCode).subscribe(
             {
-                //_apiStatus.value = FoodApiStatus.LOADING
-                _apiStatus.postValue(FoodApiStatus.LOADING)
-                //_restaurants.value = it.Restaurants
-                _restaurants.postValue(it.Restaurants)
-                //_apiStatus.value = FoodApiStatus.DONE
-                _apiStatus.postValue(FoodApiStatus.DONE)
+                _restaurants.value = it.Restaurants
+                _apiStatus.value = FoodApiStatus.DONE
             }, {
-                //_apiStatus.value = FoodApiStatus.ERROR
-                _apiStatus.postValue(FoodApiStatus.ERROR)
-                //_restaurants.value = ArrayList()
-                _restaurants.postValue(ArrayList())
+                _apiStatus.value = FoodApiStatus.ERROR
+                _restaurants.value = ArrayList()
             }
 
         ))
@@ -53,8 +47,8 @@ class HomeViewModel @Inject constructor(private val foodRepo: FoodRepo): ViewMod
         compositeDisposable.add(disposable)
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    fun cleanUp() {
+    override fun onCleared() {
+        super.onCleared()
         compositeDisposable.clear()
     }
 

@@ -14,4 +14,5 @@ class FoodRepo @Inject constructor(private val foodApi: FoodApi){
             outCode
         )
             .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
 }

@@ -35,6 +35,7 @@ class RestaurantAdapter() : ListAdapter<Restaurant, RestaurantAdapter.Restaurant
 
             Picasso.get()
                 .load(refactorImgUrl(BASE_IMAGE_URL, restaurant.Id))
+                //.load(restaurant.LogoUrl)
                 .into(itemView.logoImage)
 
 
