@@ -4,7 +4,7 @@ import com.gnova.foodlocator.api.models.Restaurant
 
 sealed class HomeViewState {
 
-    data class Presenting( val Restaurants: List<Restaurant>) : HomeViewState()
+    data class Presenting( val restaurants: List<Restaurant>) : HomeViewState()
 
     object Error : HomeViewState()
 

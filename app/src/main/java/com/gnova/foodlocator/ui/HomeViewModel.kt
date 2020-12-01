@@ -1,5 +1,6 @@
 package com.gnova.foodlocator.ui
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,7 +14,7 @@ import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(private val foodRepo: FoodRepo): ViewModel()  {
 
-    // View State Version
+    // View State
     private val _viewState = MutableLiveData<HomeViewState>()
     val viewState: LiveData<HomeViewState>
         get() = _viewState
@@ -31,7 +32,7 @@ class HomeViewModel @Inject constructor(private val foodRepo: FoodRepo): ViewMod
             foodRepo.getRestaurants(outCode)
                 .subscribe(
             {
-                _viewState.value = Presenting(it.Restaurants)
+                _viewState.value = Presenting(it.restaurants)
             }, {
                 _viewState.value = Error
             }

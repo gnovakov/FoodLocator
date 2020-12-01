@@ -29,12 +29,12 @@ class RestaurantAdapter() : ListAdapter<Restaurant, RestaurantAdapter.Restaurant
 
         fun bind(restaurant: Restaurant) {
 
-            itemView.name.text = restaurant.Name
-            itemView.cuisine.text = restaurant.Cuisines[0].Name
-            itemView.rating.text = restaurant.RatingStars.toString()
+            itemView.name.text = restaurant.name
+            itemView.cuisine.text = restaurant.cuisines[0].name
+            itemView.rating.text = restaurant.ratingStars.toString()
 
             Picasso.get()
-                .load(refactorImgUrl(BASE_IMAGE_URL, restaurant.Id))
+                .load(refactorImgUrl(BASE_IMAGE_URL, restaurant.id))
                 //.load(restaurant.LogoUrl)
                 .into(itemView.logoImage)
 
@@ -47,7 +47,7 @@ class RestaurantAdapter() : ListAdapter<Restaurant, RestaurantAdapter.Restaurant
     companion object DiffCallback : DiffUtil.ItemCallback<Restaurant>() {
 
         override fun areItemsTheSame(oldItem: Restaurant, newItem: Restaurant): Boolean {
-            return oldItem.Id == newItem.Id
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: Restaurant, newItem: Restaurant): Boolean {

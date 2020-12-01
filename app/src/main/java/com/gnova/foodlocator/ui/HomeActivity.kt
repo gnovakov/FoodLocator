@@ -44,10 +44,10 @@ class HomeActivity : AppCompatActivity() {
 
     private fun observeViewState() {
         viewModel.viewState.observe(this, Observer {
-                when (it) {
-                    is Presenting -> showRestaurants(it.Restaurants)
-                    is Error -> Log.d("TAG", "ERROR")
-                }
+            when (it) {
+                is Presenting -> showRestaurants(it.restaurants)
+                is Error -> Log.d("TAG", "ERROR")
+            }
         })
     }
 
