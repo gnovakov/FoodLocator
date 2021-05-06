@@ -1,12 +1,13 @@
 package com.gnova.data.mappers
 
+import com.gnova.data.models.RestaurantDTO
 import com.gnova.domain.common.DomainMapper
 import com.gnova.domain.models.Restaurant
 import javax.inject.Inject
 
-class RestaurantDTOMapper @Inject constructor(): DomainMapper<com.gnova.data.models.Restaurant, Restaurant> {
+class RestaurantDTOMapper @Inject constructor(): DomainMapper<RestaurantDTO, Restaurant> {
 
-    override fun mapToDomain(entity: com.gnova.data.models.Restaurant): Restaurant {
+    override fun mapToDomain(entity: RestaurantDTO): Restaurant {
         return Restaurant(
             id = entity.id,
             cuisines = entity.cuisines[0].name,
@@ -15,16 +16,16 @@ class RestaurantDTOMapper @Inject constructor(): DomainMapper<com.gnova.data.mod
         )
     }
 
-    override fun mapToEntity(domainModel: Restaurant): com.gnova.data.models.Restaurant {
+    override fun mapToEntity(domainModel: Restaurant): RestaurantDTO {
         TODO("Not yet implemented")
     }
 
-    fun mapToDomainList(restaurants: List<com.gnova.data.models.Restaurant>): List<Restaurant> {
-        return restaurants.map {
+    fun mapToDomainList(restaurantDTOS: List<RestaurantDTO>): List<Restaurant> {
+        return restaurantDTOS.map {
             mapToDomain(it) }
     }
 
-    fun mapToEntityList(restaurants: List<Restaurant>): List<com.gnova.data.models.Restaurant> {
+    fun mapToEntityList(restaurants: List<Restaurant>): List<RestaurantDTO> {
         return restaurants.map {
             mapToEntity(it) }
     }

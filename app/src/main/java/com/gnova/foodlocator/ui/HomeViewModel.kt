@@ -26,33 +26,14 @@ class HomeViewModel @Inject constructor(private val justEatRepoImpl: JustEatRepo
         getRestaurants(outCode.filter{ it.isLetterOrDigit() || it.isWhitespace() })
     }
 
-
-
-    /*private fun getRestaurants(outCode: String) {
-        _viewState.value = Loading
-        add(
-            foodRepo.getRestaurants(outCode)
-                .subscribe(
-            {
-                _viewState.value = Presenting(it.restaurants)
-            }, {
-                _viewState.value = Error
-            }
-
-        ))
-    }*/
-
     private fun getRestaurants(outCode: String) {
-        Log.i("TAG", "getRestaurants")
-        Log.i("TAG", "getRestaurants " + outCode)
+
         _viewState.value = Loading
         add(
             justEatRepoImpl.getRestaurants(outCode)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                //.compose(schedulerProviderImpl.getSchedulers())
                 .subscribe({
-                    Log.i("TAG", " subscribe " + it) // doesnt fire?
                     _viewState.value = Presenting(it)
                 }, {
                     _viewState.value = Error

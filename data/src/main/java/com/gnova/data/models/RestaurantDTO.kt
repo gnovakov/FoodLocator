@@ -3,7 +3,7 @@ package com.gnova.data.models
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-data class Restaurant(
+data class RestaurantDTO(
     @SerializedName("Id")
     val id: Int,
     @SerializedName("Cuisines")
@@ -13,12 +13,10 @@ data class Restaurant(
     @SerializedName("Name")
     val name: String,
     @SerializedName("RatingStars")
-    val ratingStars: Double,
+    val ratingStars: Double
 )
 
 data class Cuisine(
     @SerializedName("Name")
-    val name: String,
-    @SerializedName("SeoName")
-    val seoName: String
+    val name: String
 )

@@ -1,7 +1,6 @@
 package com.gnova.data.repositories
 
 import com.gnova.data.api.JustEatApi
-import com.gnova.data.api.response.RestaurantResponse
 import com.gnova.data.mappers.RestaurantDTOMapper
 import com.gnova.domain.models.Restaurant
 import com.gnova.domain.repositories.JustEatRepo

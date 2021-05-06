@@ -1,12 +1,9 @@
 package com.gnova.data.api.response
 
-import com.gnova.data.models.Restaurant
+import com.gnova.data.models.RestaurantDTO
 import com.google.gson.annotations.SerializedName
-import java.io.Serializable
 
 data class RestaurantResponse(
     @SerializedName("Restaurants")
-    val restaurants: List<Restaurant>,
-    @SerializedName("ResultCount")
-    var resultCount: Int
+    val restaurants: List<RestaurantDTO>
 )
