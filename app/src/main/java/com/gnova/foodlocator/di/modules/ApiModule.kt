@@ -1,6 +1,6 @@
 package com.gnova.foodlocator.di.modules
 
-import com.gnova.foodlocator.api.FoodApi
+import com.gnova.data.api.JustEatApi
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
@@ -16,7 +16,7 @@ class ApiModule {
     @Provides
     @Reusable
     fun providesRetrofit(
-        okHttpClient: OkHttpClient.Builder): FoodApi =
+        okHttpClient: OkHttpClient.Builder): JustEatApi =
         Retrofit.Builder()
             .baseUrl("https://uk.api.just-eat.io/")
             .client(
@@ -26,7 +26,7 @@ class ApiModule {
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) // Needed for Rx
             .build()
-            .create(FoodApi::class.java)
+            .create(JustEatApi::class.java)
 
     @Provides
     @Reusable

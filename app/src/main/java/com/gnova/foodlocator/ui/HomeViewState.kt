@@ -1,10 +1,10 @@
 package com.gnova.foodlocator.ui
 
-import com.gnova.foodlocator.api.models.Restaurant
+import com.gnova.domain.models.Restaurant
 
 sealed class HomeViewState {
 
-    data class Presenting( val restaurants: List<Restaurant>) : HomeViewState()
+    data class Presenting(val restaurants: List<Restaurant>) : HomeViewState()
 
     object Error : HomeViewState()
 

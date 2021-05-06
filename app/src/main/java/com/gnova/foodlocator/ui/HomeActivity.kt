@@ -6,10 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.gnova.domain.models.Restaurant
 import com.gnova.foodlocator.App
 import com.gnova.foodlocator.R
 import com.gnova.foodlocator.ViewModelFactory
-import com.gnova.foodlocator.api.models.Restaurant
 import kotlinx.android.synthetic.main.activity_home.*
 import com.gnova.foodlocator.ui.HomeViewState.Presenting
 import com.gnova.foodlocator.ui.HomeViewState.Error

@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.gnova.domain.models.Restaurant
 import com.gnova.foodlocator.Const.BASE_IMAGE_URL
 import com.gnova.foodlocator.R
-import com.gnova.foodlocator.api.models.Restaurant
 import com.gnova.foodlocator.refactorImgUrl
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.restaurant_grid_view_item.view.*
@@ -30,7 +30,7 @@ class RestaurantAdapter() : ListAdapter<Restaurant, RestaurantAdapter.Restaurant
         fun bind(restaurant: Restaurant) {
 
             itemView.name.text = restaurant.name
-            itemView.cuisine.text = restaurant.cuisines[0].name
+            itemView.cuisine.text = restaurant.cuisines
             itemView.rating.text = restaurant.ratingStars.toString()
 
             Picasso.get()
