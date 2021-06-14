@@ -8,8 +8,6 @@ data class RestaurantDTO(
     val id: Int,
     @SerializedName("Cuisines")
     val cuisines: List<Cuisine>,
-    @SerializedName("LogoUrl")
-    val logoUrl: String,
     @SerializedName("Name")
     val name: String,
     @SerializedName("RatingStars")
